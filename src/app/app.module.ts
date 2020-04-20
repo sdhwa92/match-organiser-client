@@ -8,6 +8,8 @@ import {AppContent} from './layout/app.content';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
+import {AuthTokenService} from './services/auth-token.service';
+
 @NgModule({
   declarations: [
     AppContent,
@@ -20,7 +22,9 @@ import { LoginComponent } from './components/login/login.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthTokenService
+  ],
   bootstrap: [AppContent]
 })
 export class AppModule { }

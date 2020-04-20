@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AuthTokenService} from '../../services/auth-token.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private _authTokenService: AuthTokenService
   ) { }
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   login(form: FormGroup) {
     console.log(form);
+    // this._authTokenService.getToken();
   }
 
 }
