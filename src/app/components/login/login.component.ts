@@ -54,13 +54,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(form: FormGroup) {
-    console.log('login form');
-    console.log(form);
     // this._authTokenService.getToken();
+    if ( form.valid ) {
+      this._authTokenService.authSignIn(
+        {
+          username: form.get('email').value,
+          password: form.get('password').value
+        }
+      );
+    }
   }
 
   signUp(form: FormGroup) {
-    console.log(form);
     if (form.valid) {
       const signUpDetails: UserModel = {
         username: form.get('email').value,
@@ -70,18 +75,18 @@ export class LoginComponent implements OnInit, OnDestroy {
           name: form.get('name').value
         }
       };
-      console.log(signUpDetails);
+      // console.log(signUpDetails);
       this._authTokenService.authSignUp(signUpDetails)
         .pipe(
           takeUntil(this._destroy$),
           finalize(() => {
-            console.log('Form Submitted');
+            // console.log('Form Submitted');
             this.reset('signUp');
           })
         )
         .subscribe(
           (val) => {
-            console.log(val);
+            // console.log(val);
             this.username = signUpDetails.username;
             this._cofirmCodeSent$.next(true);
           }
@@ -94,19 +99,19 @@ export class LoginComponent implements OnInit, OnDestroy {
    * @param form: Verification form group
    */
   verifyEmail(form: FormGroup) {
-    console.log(form);
+    // console.log(form);
     if (form.valid) {
       this._authTokenService.authConfirmSignUp(this.username, form.get('verificationCode').value)
         .pipe(
           takeUntil(this._destroy$),
           finalize(() => {
-            console.log('Form Submitted');
+            // console.log('Form Submitted');
             this.reset('verification');
           })
         )
         .subscribe(
           (val) => {
-            console.log(val);
+            // console.log(val);
             if (val === 'SUCCESS') {
               this._signUpSuccess$.next(true);
             }
