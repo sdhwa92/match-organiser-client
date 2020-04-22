@@ -1,3 +1,88 @@
-<p>
-  login works!
-</p>
+<div id="loginWrapper">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+      <div class="col-md-8 col-lg-6">
+        <div class="login d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 col-lg-8 mx-auto">
+                <div *ngIf="view === 'signIn'">
+                  <h3 class="login-heading mb-4">Welcome back!</h3>
+                  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+                    <div class="form-label-group">
+                      <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                      <label for="inputEmail">Email address</label>
+                    </div>
+
+                    <div class="form-label-group">
+                      <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                      <label for="inputPassword">Password</label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mb-3">
+                      <input formControlName="remember" type="checkbox" class="custom-control-input" id="rememberPasswordCheck">
+                      <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                    <div class="text-center">
+                      <a class="small" href="#">Forgot password?</a>
+                    </div>
+                    <div class="text-center">
+                      <a class="small" href="javascript:void(0)" (click)="showForm('signUp')">Create an account</a>
+                    </div>
+                  </form>
+                </div>
+                <div *ngIf="view === 'signUp' && !(confirmCodeSent$ | async)">
+                  <h3 class="login-heading mb-4">Sign Up</h3>
+                  <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm)">
+                    <div class="form-label-group">
+                      <input formControlName="email" type="email" id="signupEmail" class="form-control" placeholder="Email address" required autofocus>
+                      <label for="signupEmail">Email address</label>
+                    </div>
+
+                    <div class="form-label-group">
+                      <input formControlName="password" type="password" id="signupPassword" class="form-control" placeholder="Password" required>
+                      <label for="signupPassword">Password</label>
+                    </div>
+
+                    <div class="form-label-group">
+                      <input formControlName="confirmPassword" type="password" id="signupConfirmPassword" class="form-control" placeholder="Password" required>
+                      <label for="signupConfirmPassword">Confirm Password</label>
+                    </div>
+
+                    <div class="form-label-group">
+                      <input formControlName="name" type="text" id="signupName" class="form-control" placeholder="Full name" required>
+                      <label for="signupName">Full Name</label>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign up</button>
+                    <button class="btn btn-lg btn-default btn-block btn-login text-uppercase font-weight-bold mb-2" (click)="showForm('signIn')">Cancel</button>
+                  </form>
+                </div>
+                <div *ngIf="(confirmCodeSent$ | async) && !(signUpSuccess$ | async)">
+                  <h3 class="login-heading mb-4">Verify Email</h3>
+                  <form [formGroup]="verificationCodeForm" (ngSubmit)="verifyEmail(verificationCodeForm)">
+                    <div class="form-label-group">
+                      <input formControlName="verificationCode" type="text" id="verificationCode" class="form-control" placeholder="Verification code" required>
+                      <label for="verificationCode">Verification code</label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Submit</button>
+                  </form>
+                </div>
+                <div *ngIf="signUpSuccess$ | async">
+                  <h3 class="login-heading mb-4">Thank you for signing up!</h3>
+                  <a class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                     (click)="showForm('signIn')" style="color: #fff">Login</a>
+                </div>
+                <div *ngIf="view === 'forgotPassword'">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

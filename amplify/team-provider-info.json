@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-matchorganiserclient-dev-213247-authRole",
+            "UnauthRoleArn": "arn:aws:iam::782813656505:role/amplify-matchorganiserclient-dev-213247-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::782813656505:role/amplify-matchorganiserclient-dev-213247-authRole",
+            "Region": "ap-southeast-2",
+            "DeploymentBucketName": "amplify-matchorganiserclient-dev-213247-deployment",
+            "UnauthRoleName": "amplify-matchorganiserclient-dev-213247-unauthRole",
+            "StackName": "amplify-matchorganiserclient-dev-213247",
+            "StackId": "arn:aws:cloudformation:ap-southeast-2:782813656505:stack/amplify-matchorganiserclient-dev-213247/df400e80-83c3-11ea-b4e6-0a960248e856",
+            "AmplifyAppId": "d28cvhbrbssf5d"
+        },
+        "categories": {
+            "auth": {
+                "matchorganiserclient77e4a667": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"matchorganiserclient77e4a667": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
